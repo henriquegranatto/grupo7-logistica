@@ -2,6 +2,8 @@
 Para rodar o projeto, é necessário instalar as dependências de cada aplicação. Execute os comandos abaixo
 
 ```
+git clone https://github.com/henriquegranatto/grupo7-logistica.git
+cd grupo7-logistica
 cd backend
 npm install
 cd ..
