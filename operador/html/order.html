@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <title>Operador</title>
+    <meta charset="UTF-8" />
+    <script type="module" src="../js/order.js"></script>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1M3F4Xo7rylN_9hcyAAuABSVVb5VSiOE&libraries=places"></script>
+  </head>
+  <body>
+    <header></header>    
+
+    <section class="container-fluid p-5">
+      <button type="button" class="btn btn-success offset-md-9 col-md-3 col-12" data-bs-toggle="modal" data-bs-target="#createOrderModal">Criar entrega</button>
+
+      <table id="orderTable" class="table table-bordered table-hover caption-top">
+        <caption>Lista de entregas</caption>
+        <thead>
+          <tr class="table-dark">
+            <th>Código</th>
+            <th>Origem</th>
+            <th>Destino</th>
+            <th>Entregador</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section>
+      <div id="createOrderModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Criar uma entrega</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form data-bitwarden-watching="1">
+                <div class="input-group mb-3">
+                  <span class="input-group-text"><i class="bi bi-123"></i></span>
+                  <input type="text" id="formOrderCode" class="form-control" placeholder="Código">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text"><i class="bi bi-house"></i></span>
+                  <input type="text" id="formOrderOrigin" class="form-control" placeholder="Endereço de Origem">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text"><i class="bi bi-pin-map"></i></span>
+                  <input type="text" id="formOrderDestiny" class="form-control" placeholder="Endereço de Destino">
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" id="btnCreateOrder" class="btn btn-primary" onclick="createOrder()">Criar Entrega</button>
+              <button type="button" id="btnCreateOrderLoading" class="btn btn-primary" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Criando...</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div id="assignFleetModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Atribuir um entregador</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form data-bitwarden-watching="1">
+                <select id="formFleet" class="form-select">
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="button" id="btnCreateOrder" class="btn btn-primary">Atribuir Entregador</button>
+              <button type="button" id="btnCreateOrderLoading" class="btn btn-primary" disabled>
+                <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                <span role="status">Atribuindo...</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

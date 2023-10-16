@@ -1,0 +1,7 @@
+@import "bootstrap/scss/bootstrap.scss";
+
+#map
+{
+    width: 100vw;
+    height: calc(100vh - 96px);
+}

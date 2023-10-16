@@ -1,0 +1,36 @@
+<nav class="px-3 py-2 text-bg-dark">
+    <div class="container-fluid">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+        <span class="fs-5">Painel do Entregador</span>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+        <li id="menu-map">
+            <a href="/" class="nav-link text-white">
+            <i class="bi bi-map d-block mx-auto mb-1 text-center fs-4"></i>
+            Operação
+            </a>
+        </li>
+        <li id="menu-order">
+            <a href="/html/order.html" class="nav-link text-white">
+            <i class="bi bi-box-seam d-block mx-auto mb-1 text-center fs-4"></i>
+            Entregas
+            </a>
+        </li>
+        <li id="menu-user">
+            <div class="dropdown show">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="" id="user_picture" class="bi bi-box-seam d-block mx-auto mb-1 text-center fs-4" />
+                    <span id="user_name"></span>
+                </a>
+                
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#" onclick="onSignOut()">Sair</a>
+                </div>
+            </div>
+        </li>
+        </ul>
+    </div>
+    </div>
+</nav>
