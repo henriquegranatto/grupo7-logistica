@@ -20,7 +20,7 @@ async function getOrders()
 
     orderList.data.map(order => {
         const fleetColumn = order.fleet != null && order.fleet != 0
-        ? `<button type="button" class="btn btn-primary" onclick="openAssignFleetModal(${order.id})">${order.fleet}</button>`
+        ? `<button type="button" class="btn btn-primary" onclick="openAssignFleetModal(${order.id})">${order.fleet_name}</button>`
         : `<button type="button" class="btn btn-primary" onclick="openAssignFleetModal(${order.id})">Não atribuído</button>`
 
         document.querySelector('#orderTable tbody').innerHTML +=
