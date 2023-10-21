@@ -19,7 +19,7 @@ async function getOrders()
     document.querySelector('#orderTable tbody').innerHTML = ""
 
     orderList.data.map(order => {
-        const fleetColumn = order.fleet 
+        const fleetColumn = order.fleet != null && order.fleet != 0
         ? `<button type="button" class="btn btn-primary" onclick="openAssignFleetModal(${order.id})">${order.fleet}</button>`
         : `<button type="button" class="btn btn-primary" onclick="openAssignFleetModal(${order.id})">Não atribuído</button>`
 
@@ -98,14 +98,33 @@ async function openAssignFleetModal(order)
     });
 
     document.querySelector('#formFleet').innerHTML = ""
+    document.querySelector('#formFleet').innerHTML += `<option value="0" data-order="${order}">Desatribuir</option>`
 
-    fleetList.data.map(fleet => document.querySelector('#formFleet').innerHTML += `<option value="${fleet.id}">${fleet.name}</option>`)
+    fleetList.data.map(fleet => document.querySelector('#formFleet').innerHTML += `<option value="${fleet.id}" data-order="${order}">${fleet.name}</option>`)
 
     await modal.show()
 }
 
-window.deleteOrder = deleteOrder
+const assignOrder = async () =>
+{
+    const formFleet = document.getElementById("formFleet");
+    const formFleetSelected = formFleet.selectedIndex;
+    const formFleetSelectedOption = formFleet.options[formFleetSelected];
+
+    const orderAssigned = await axios({
+        method: "put",
+        data: {fleet: formFleet.value},
+        url: `http://localhost:3000/order/${formFleetSelectedOption.getAttribute("data-order")}`,
+    });
+
+    const modal = bootstrap.Modal.getInstance(document.querySelector('#assignFleetModal'))
+    await getOrders()
+    await modal.hide()
+}
+
 window.createOrder = createOrder
+window.assignOrder = assignOrder
+window.deleteOrder = deleteOrder
 window.openAssignFleetModal = openAssignFleetModal
 
 window.onload = function () 

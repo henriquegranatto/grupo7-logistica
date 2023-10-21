@@ -75,16 +75,12 @@
             </div>
             <div class="modal-body">
               <form data-bitwarden-watching="1">
-                <select id="formFleet" class="form-select">
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
+                <select id="formFleet" class="form-select"></select>
               </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" id="btnAssignOrder" class="btn btn-primary">Atribuir Entregador</button>
+              <button type="button" id="btnAssignOrder" class="btn btn-primary" onclick="assignOrder()">Atribuir Entregador</button>
               <button type="button" id="btnAssignOrderLoading" class="btn btn-primary" disabled>
                 <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
                 <span role="status">Atribuindo...</span>
