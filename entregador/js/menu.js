@@ -1,3 +1,4 @@
+import axios from "axios";
 import * as bootstrap from 'bootstrap'
 import { io } from "https://cdn.socket.io/4.5.4/socket.io.esm.min.js";
 
@@ -61,6 +62,19 @@ const showUserAndCollectLocation = () =>
     }, 1000)
 }
 
+const createFleet = async (data) =>
+{
+    const {sub, name} = data
+
+    const orderCreated = await axios({
+        method: "post",
+        data: {name: name, google_id: sub, socket_id: socket.id},
+        url: "http://localhost:3000/fleet",
+    });
+
+    console.log(orderCreated)
+}
+
 window.onSignIn = (user) =>
 {
     user = decodeJWT(user.credential)
@@ -70,6 +84,7 @@ window.onSignIn = (user) =>
     localStorage.setItem("user_email", user.email)
     localStorage.setItem("user_picture", user.picture)
 
+    createFleet(user)
     showUserAndCollectLocation()
 }
 
