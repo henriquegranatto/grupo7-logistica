@@ -62,14 +62,14 @@ const showUserAndCollectLocation = () =>
     }, 1000)
 }
 
-const createFleet = async (data) =>
+const createorUpdateFleet = async (data) =>
 {
     const {sub, name, email, picture} = data
 
     const orderCreated = await axios({
         method: "post",
         data: {name: name, email: email, picture: picture, google_id: sub, socket_id: socket.id},
-        url: "http://localhost:3000/fleet",
+        url: "http://localhost:3000/fleet/login",
     });
 
     console.log(orderCreated)
@@ -84,7 +84,7 @@ window.onSignIn = (user) =>
     localStorage.setItem("user_email", user.email)
     localStorage.setItem("user_picture", user.picture)
 
-    createFleet(user)
+    createorUpdateFleet(user)
     showUserAndCollectLocation()
 }
 
