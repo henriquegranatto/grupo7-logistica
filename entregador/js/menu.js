@@ -34,7 +34,7 @@ const decodeJWT = (token) =>
 
 const googleSignIn = () =>
 {
-    if(localStorage.getItem("user_id") == null)
+    if(localStorage.getItem("user_google") == null)
     {
         google.accounts.id.initialize({
             client_id: "1088063897907-t25q43ps71hmm24ta010mh0qb90a84uc.apps.googleusercontent.com",
@@ -62,35 +62,40 @@ const showUserAndCollectLocation = () =>
     }, 1000)
 }
 
-const createorUpdateFleet = async (data) =>
+const createOrUpdateFleet = async (data) =>
 {
     const {sub, name, email, picture} = data
 
-    const orderCreated = await axios({
+    const request = await axios({
         method: "post",
         data: {name: name, email: email, picture: picture, google_id: sub, socket_id: socket.id},
         url: "http://localhost:3000/fleet/login",
     });
 
-    console.log(orderCreated)
+    if(request.status == 201)
+        localStorage.setItem("user_id", request.data.id)
+
+    if(request.status == 200)
+        localStorage.setItem("user_id", request.data[0])
 }
 
 window.onSignIn = (user) =>
 {
     user = decodeJWT(user.credential)
 
-    localStorage.setItem("user_id", user.sub)
+    localStorage.setItem("user_google", user.sub)
     localStorage.setItem("user_name", user.name)
     localStorage.setItem("user_email", user.email)
     localStorage.setItem("user_picture", user.picture)
 
-    createorUpdateFleet(user)
+    createOrUpdateFleet(user)
     showUserAndCollectLocation()
 }
 
 window.onSignOut = () =>
 {
     localStorage.removeItem("user_id")
+    localStorage.removeItem("user_google")
     localStorage.removeItem("user_name")
     localStorage.removeItem("user_email")
     localStorage.removeItem("user_picture")

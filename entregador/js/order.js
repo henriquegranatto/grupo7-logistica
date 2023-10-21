@@ -10,7 +10,7 @@ async function getOrders()
 {
     const orderList = await axios({
         method: "get",
-        url: "http://localhost:3000/order",
+        url: `http://localhost:3000/fleet/orders/${localStorage.getItem("user_id")}`,
     });
 
     document.querySelector('#orderTable tbody').innerHTML = ""

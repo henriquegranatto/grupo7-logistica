@@ -4,7 +4,8 @@ const {Order} = require("../repository/order");
 const {Fleet} = require("../repository/fleet");
 
 router.get('/orders/:fleet', async function(request, response, next) {
-    response.status(200).send(await Order.findAll({ where: {fleet: request.params.fleet} }))
+    if(request.params.fleet != "null")
+        response.status(200).send(await Order.findAll({ where: {fleet: request.params.fleet} }))
 });
 
 router.get('/', async function(request, response, next) {
@@ -25,7 +26,7 @@ router.post('/login', async function(request, response, next) {
     })
 
     if(created)
-        response.status(201).send(fleet.id)
+        response.status(201).send(fleet)
     else
     {
         let fleet = await Fleet.update({
@@ -35,7 +36,7 @@ router.post('/login', async function(request, response, next) {
             socket_id: request.body.socket_id,
         }, {where: {google_id: request.body.google_id}});
 
-        response.status(201).send(fleet.id)
+        response.status(200).send(fleet)
     }
 });
 
