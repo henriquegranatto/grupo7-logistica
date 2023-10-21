@@ -14,6 +14,8 @@ router.get('/', async function(request, response, next) {
 router.post('/', async function(request, response, next) {
     response.status(200).send(await Fleet.create({
         name: request.body.name,
+        email: request.body.email,
+        picture: request.body.picture,
         google_id: request.body.google_id,
         socket_id: request.body.socket_id,
     }))

@@ -64,7 +64,7 @@ const showUserAndCollectLocation = () =>
 
 const createFleet = async (data) =>
 {
-    const {sub, name} = data
+    const {sub, name, email, picture} = data
 
     const orderCreated = await axios({
         method: "post",

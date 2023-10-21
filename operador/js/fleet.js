@@ -1,3 +1,4 @@
+import axios from "axios";
 import { renderMenu } from "./menu";
 
 import '../css/index.css'
@@ -14,8 +15,8 @@ async function getFleets()
 
     fleetList.data.map(fleet => {
         document.querySelector('#fleetTable tbody').innerHTML +=
-        `<tr>
-            <td class="col-3">${fleet.picture}</td>
+        `<tr>        
+            <td class="col-3"><img src="${fleet.picture}" id="user_picture" class="bi bi-box-seam d-block mx-auto mb-1 text-center fs-4" /></td>
             <td class="col-3">${fleet.name}</td>
             <td class="col-3">${fleet.email}</td>
         </tr>`
