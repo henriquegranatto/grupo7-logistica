@@ -68,7 +68,7 @@ const createFleet = async (data) =>
 
     const orderCreated = await axios({
         method: "post",
-        data: {name: name, google_id: sub, socket_id: socket.id},
+        data: {name: name, email: email, picture: picture, google_id: sub, socket_id: socket.id},
         url: "http://localhost:3000/fleet",
     });
 
