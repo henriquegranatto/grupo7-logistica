@@ -1,9 +1,32 @@
+import axios from "axios";
 import { renderMenu } from "./menu";
 
 import "../css/index.css"
 import "bootstrap-icons/font/bootstrap-icons.css"
 
 let map
+
+const fleetIcon = L.icon({
+    iconUrl: '../assets/images/logo.png',
+    iconSize:     [32, 32],
+});
+
+const boxIcon = L.icon({
+    iconUrl: '../assets/images/box.png',
+    iconSize:     [32, 32],
+});
+
+async function getOrders()
+{
+    const orderList = await axios({
+        method: "get",
+        url: "http://localhost:3000/order",
+    });
+
+    orderList.data.map(order => {
+        L.marker([order.destiny_latitude, order.destiny_longitude], {icon: boxIcon}).addTo(map)
+    })
+}
 
 const renderMap = () =>
 {
@@ -16,8 +39,10 @@ const renderMap = () =>
 
     navigator.geolocation.getCurrentPosition((position) => {
         map.setView([position.coords.latitude, position.coords.longitude], 13)
-        L.marker([position.coords.latitude, position.coords.longitude]).addTo(map)
+        L.marker([position.coords.latitude, position.coords.longitude], {icon: fleetIcon}).addTo(map)
     })
+
+    getOrders()
 }
 
 renderMenu("map")

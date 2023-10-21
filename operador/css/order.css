@@ -1,6 +1,6 @@
 @import "bootstrap/scss/bootstrap.scss";
 
-#btnCreateOrderLoading
+#btnAssignOrderLoading
 {
     display: none;
 }
