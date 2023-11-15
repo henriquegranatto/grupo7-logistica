@@ -1,3 +1,8 @@
+# Ferramentas
+* Linguagens: HTML, CSS, Javascript
+* Bibliotecas: Bootstrap, Vite, ExpressJS, Socket.io, Sequelize, Axios
+* Banco de Dados: Postgres
+
 # Instalação
 Para rodar o projeto, é necessário instalar as dependências de cada aplicação. Execute os comandos abaixo
 
