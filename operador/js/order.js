@@ -9,6 +9,7 @@ import * as bootstrap from 'bootstrap'
 let OrderOriginData = {}
 let OrderDestinyData = {}
 
+// This function get all orders from the API and render it on the table
 async function getOrders()
 {
     const orderList = await axios({
@@ -35,7 +36,7 @@ async function getOrders()
         </tr>`
     })
 }
-
+// This function creates an order and send it to the API
 async function createOrder()
 {
     document.querySelector('#btnCreateOrder').style.display = "none"
@@ -77,7 +78,7 @@ async function createOrder()
     await getOrders()
     await modal.hide()
 }
-
+// This function deletes an order and send it to the API
 async function deleteOrder(order)
 {
     const orderCreated = await axios({
@@ -87,7 +88,7 @@ async function deleteOrder(order)
 
     await getOrders()
 }
-
+// This function opens the modal to assign a fleet to an order
 async function openAssignFleetModal(order)
 {
     const modal = new bootstrap.Modal(document.querySelector('#assignFleetModal'))

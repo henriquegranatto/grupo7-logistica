@@ -47,7 +47,7 @@ const googleSignIn = () =>
         showUserAndCollectLocation()
     }
 }
-
+// This function retrieves the position of the user and send it to the API
 const showUserAndCollectLocation = () =>
 {
     document.querySelector('#user_name').textContent = localStorage.getItem("user_name")

@@ -25,7 +25,7 @@ const boxIcon = L.icon({
     iconUrl: '../assets/images/box.png',
     iconSize:     [32, 32],
 });
-
+// This function retrieves all orders from the API and render it on the map
 async function getOrders()
 {
     const orderList = await axios({
@@ -37,7 +37,7 @@ async function getOrders()
         L.marker([order.destiny_latitude, order.destiny_longitude], {icon: boxIcon}).addTo(map)
     })
 }
-
+// This function creates the map and set the initial position
 const renderMap = () =>
 {
     map = L.map('map')
