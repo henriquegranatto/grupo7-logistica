@@ -12,6 +12,14 @@ const Fleet = sequelize.define('fleet', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    email: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    picture: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     google_id: {
         type: Sequelize.STRING,
         allowNull: false

@@ -15,10 +15,6 @@ const Order = sequelize.define('order', {
     },
     fleet: {
         type: Sequelize.BIGINT,        
-        // references: {
-        //     model: Fleet,
-        //     key: 'id'
-        // },
         allowNull: true
     },
     origin_address: {

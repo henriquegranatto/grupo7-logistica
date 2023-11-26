@@ -1,10 +1,22 @@
 var express = require('express');
 var router = express.Router();
+const {Fleet} = require("../repository/fleet");
 const {Order} = require("../repository/order");
 
-router.get('/', async function(request, response, next) {
-    response.status(200).send(await Order.findAll())
-});
+const getOrderFleet = async (order) => await Fleet.findOne({where: {id: order.fleet}})
+
+const getOrders = async (request, response, next) =>
+{
+    const orderList = await Order.findAll()
+
+    for (let index = 0; index < orderList.length; index++) 
+        if(orderList[index].fleet != null && orderList[index].fleet != 0)
+            orderList[index].setDataValue("fleet_name", (await getOrderFleet(orderList[index])).name)
+
+    response.status(200).send(orderList)
+}
+
+router.get('/', getOrders);
 
 router.post('/', async function(request, response, next) {
     response.status(200).send(await Order.create({
